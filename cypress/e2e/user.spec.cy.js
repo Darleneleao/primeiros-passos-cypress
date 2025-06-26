@@ -18,6 +18,8 @@ describe('Orange HRM Testes', () => {
     dataField: "[placeholder='yyyy-dd-mm']",
     dataCloseButton: ".--close",
     subimitButton: "[type='submit']",
+    genericCombobox: ".oxd-select-text--arrow",
+    genericItemCombobox: ".oxd-select-dropdown",
 
   }
 
@@ -44,6 +46,12 @@ describe('Orange HRM Testes', () => {
     cy.get(selectorList.subimitButton).eq(0).click()
     cy.get('body').should('contain', 'Successfully Updated')
     cy.get('.oxd-toast-close')
+    cy.get(selectorList.genericCombobox).eq(0).click()
+    cy.get(selectorList.genericItemCombobox).contains('Brazilian').click()
+    cy.get(selectorList.genericCombobox).eq(1).click()
+    cy.get('.oxd-select-text-input').contains('Single').click()    
+
+
 
 
 
