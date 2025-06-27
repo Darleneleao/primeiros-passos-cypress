@@ -10,7 +10,7 @@ Automatizar cenários simples de autenticação no sistema de simulação **Oran
 
 Este projeto contém dois cenários principais de testes automatizados utilizando o Cypress no sistema **OrangeHRM**:
 
----
+
 
 ### ✅ 1. Atualização de Informações do Usuário (Login com Sucesso)
 
@@ -35,7 +35,7 @@ Garantir que um usuário válido consiga fazer login e atualizar suas informaç�
 **Resultado esperado:**  
 Todas as informações são salvas com sucesso e uma notificação de confirmação é exibida.
 
----
+
 
 ### ❌ 2. Login com Falha
 
