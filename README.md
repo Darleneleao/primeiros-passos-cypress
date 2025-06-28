@@ -6,6 +6,36 @@ Este repositório contém meus primeiros exercícios práticos de automação de
 
 Automatizar cenários simples de autenticação no sistema de simulação **OrangeHRM**, explorando os principais recursos e comandos do Cypress.
 
+
+## 🗂️ Estratégia Object Page
+
+O projeto utiliza a estratégia de **Object Page**, que consiste em organizar o código de automação criando uma pasta chamada `pages`. Nessa pasta, cada arquivo representa uma página do sistema, encapsulando os seletores e métodos de interação com os elementos daquela página. Isso facilita a manutenção, reutilização e legibilidade dos testes, permitindo que as ações e elementos de cada página fiquem centralizados em um único local.
+
+Por exemplo, para a tela de login, existe um arquivo `LoginPage.js` dentro da pasta `pages`, onde são definidos os comandos para preencher o usuário, senha e realizar o login. Os testes então utilizam esses métodos, tornando o código mais limpo e modular.
+
+
+## 📂 Utilização da pasta `fixtures`
+
+A pasta `fixtures` é utilizada para armazenar arquivos com dados estáticos que podem ser reutilizados nos testes automatizados. No contexto deste projeto, ela contém arquivos como `userData.json`, que guarda informações de usuários (como nome de usuário e senha) utilizadas durante a execução dos testes.
+
+Esses dados são carregados nos scripts de teste por meio dos comandos do Cypress, permitindo separar a lógica dos testes dos dados de entrada. Isso facilita a manutenção, possibilita a criação de diferentes cenários de teste e torna o código mais organizado e reutilizável.
+
+Por exemplo, ao realizar o teste de login, os dados de usuário e senha são lidos diretamente do arquivo `userData.json` localizado na pasta `fixtures`, garantindo que os testes sejam mais flexíveis e fáceis de atualizar.
+
+
+## ⚙️ Utilização do arquivo `cypress.config`
+
+O arquivo `cypress.config` é responsável por centralizar as principais configurações do Cypress no projeto. Nele, você pode definir opções como a URL base do sistema a ser testado (`baseUrl`), diretórios de testes, configurações de tempo limite, entre outros parâmetros importantes para a execução dos testes.
+
+No contexto deste projeto, o `cypress.config` foi utilizado para:
+
+- Definir a URL base do OrangeHRM, facilitando o uso de caminhos relativos nos comandos `cy.visit()`.
+- Configurar caminhos personalizados para as pastas de testes, fixtures e suporte, caso necessário.
+- Ajustar opções de execução, como tempo limite de comandos e viewport padrão.
+
+Essas configurações tornam o ambiente de testes mais flexível, padronizado e fácil de manter, permitindo que todos os testes utilizem as mesmas definições sem a necessidade de repetição de código.
+
+
 ## 🧩 Cenários Automatizados
 
 Este projeto contém dois cenários principais de testes automatizados utilizando o Cypress no sistema **OrangeHRM**:
