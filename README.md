@@ -35,6 +35,14 @@ No contexto deste projeto, o `cypress.config` foi utilizado para:
 
 Essas configurações tornam o ambiente de testes mais flexível, padronizado e fácil de manter, permitindo que todos os testes utilizem as mesmas definições sem a necessidade de repetição de código.
 
+## 📝 Utilização do arquivo `user.spec.cy.js`
+
+O arquivo `user.spec.cy.js` contém os scripts de teste automatizado que validam os principais cenários do sistema OrangeHRM utilizando o Cypress. Nele, estão implementados os fluxos de teste descritos acima, como o login com sucesso, atualização de informações do usuário e tentativa de login com credenciais inválidas.
+
+Esse arquivo segue a estrutura recomendada pelo Cypress para arquivos de especificação (`spec`), agrupando os testes relacionados ao usuário em um único local. Os testes utilizam métodos definidos nas páginas (Object Page) e dados provenientes dos arquivos de fixtures, garantindo organização, reutilização e clareza no código.
+
+Dessa forma, o `user.spec.cy.js` é o ponto central para execução e manutenção dos testes automatizados deste projeto.
+
 
 ## 🧩 Cenários Automatizados
 
