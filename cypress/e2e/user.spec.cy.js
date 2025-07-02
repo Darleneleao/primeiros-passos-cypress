@@ -11,7 +11,7 @@ const myInfoPage = new MyInfoPage();
 
 describe("Orange HRM Testes", () => {
   
-  it.only("User Info Update - Success", () => {
+  it("User Info Update - Success", () => {
     loginPage.accessLoginPage();
     loginPage.loginWithUser(UserData.UserSuccess.username,UserData.UserSuccess.password);
     dashboardPage.verifyDashboardPage();
@@ -23,11 +23,10 @@ describe("Orange HRM Testes", () => {
   });
 
   it("Login - Fail", () => {
-    cy.visit("auth/login");
-    cy.get(selectorList.usernameField).type(UserData.UserFail.username);
-    cy.get(selectorList.passwordField).type(UserData.UserFail.password);
-    cy.get(selectorList.loginButton).click();
-    cy.get(selectorList.wrongCredentialsAlert);
+    loginPage.accessLoginPage();
+    loginPage.loginWithUser(UserData.UserFail.username, UserData.UserFail.password);
+    loginPage.checkAccessInvalid();
+
   });
 
 });
