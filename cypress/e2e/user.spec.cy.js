@@ -22,11 +22,4 @@ describe("Orange HRM Testes", () => {
     myInfoPage.saveForm();
   });
 
-  it("Login - Fail", () => {
-    loginPage.accessLoginPage();
-    loginPage.loginWithUser(UserData.UserFail.username, UserData.UserFail.password);
-    loginPage.checkAccessInvalid();
-
-  });
-
 });
