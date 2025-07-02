@@ -1,113 +1,91 @@
 # 🧪 Primeiros Passos com Cypress
 
-Este repositório contém meus primeiros exercícios práticos de automação de testes utilizando o **Cypress**, como parte do meu processo de aprendizado em **Qualidade de Software** e **Testes Automatizados**.
+Este repositório reúne meus primeiros exercícios práticos de automação de testes utilizando o **Cypress**, com foco em aprendizado de **Qualidade de Software** e **Testes Automatizados**.
+
+---
 
 ## 🚀 Objetivo
 
-Automatizar cenários simples de autenticação no sistema de simulação **OrangeHRM**, explorando os principais recursos e comandos do Cypress.
+Automatizar cenários de autenticação e atualização de informações no sistema de simulação **OrangeHRM**, explorando recursos essenciais do Cypress.
 
+---
 
-## 🗂️ Estratégia Object Page
+## 🗂️ Estrutura do Projeto
 
-O projeto utiliza a estratégia de **Object Page**, que consiste em organizar o código de automação criando uma pasta chamada `pages`. Nessa pasta, cada arquivo representa uma página do sistema, encapsulando os seletores e métodos de interação com os elementos daquela página. Isso facilita a manutenção, reutilização e legibilidade dos testes, permitindo que as ações e elementos de cada página fiquem centralizados em um único local.
+- **Object Page Pattern:**  
+    O código de automação está organizado utilizando o padrão **Object Page**. Cada página do sistema possui um arquivo correspondente na pasta `pages`, centralizando seletores e métodos de interação. Isso facilita a manutenção, reutilização e clareza dos testes.
 
-Por exemplo, para a tela de login, existe um arquivo `LoginPage.js` dentro da pasta `pages`, onde são definidos os comandos para preencher o usuário, senha e realizar o login. Os testes então utilizam esses métodos, tornando o código mais limpo e modular.
+- **Fixtures:**  
+    A pasta `fixtures` armazena dados estáticos reutilizáveis, como o arquivo `userData.json` com informações de usuários. Esses dados são carregados dinamicamente nos testes, separando lógica de dados e permitindo cenários flexíveis.
 
+- **Configuração:**  
+    O arquivo `cypress.config` centraliza as configurações do Cypress, como `baseUrl`, caminhos de diretórios, timeouts e viewport padrão, tornando o ambiente de testes padronizado e fácil de manter.
 
-## 📂 Utilização da pasta `fixtures`
+- **Testes:**  
+    Os scripts de teste estão no arquivo `user.spec.cy.js`, que valida os principais fluxos do sistema utilizando métodos das páginas e dados das fixtures.
 
-A pasta `fixtures` é utilizada para armazenar arquivos com dados estáticos que podem ser reutilizados nos testes automatizados. No contexto deste projeto, ela contém arquivos como `userData.json`, que guarda informações de usuários (como nome de usuário e senha) utilizadas durante a execução dos testes.
-
-Esses dados são carregados nos scripts de teste por meio dos comandos do Cypress, permitindo separar a lógica dos testes dos dados de entrada. Isso facilita a manutenção, possibilita a criação de diferentes cenários de teste e torna o código mais organizado e reutilizável.
-
-Por exemplo, ao realizar o teste de login, os dados de usuário e senha são lidos diretamente do arquivo `userData.json` localizado na pasta `fixtures`, garantindo que os testes sejam mais flexíveis e fáceis de atualizar.
-
-
-## ⚙️ Utilização do arquivo `cypress.config`
-
-O arquivo `cypress.config` é responsável por centralizar as principais configurações do Cypress no projeto. Nele, você pode definir opções como a URL base do sistema a ser testado (`baseUrl`), diretórios de testes, configurações de tempo limite, entre outros parâmetros importantes para a execução dos testes.
-
-No contexto deste projeto, o `cypress.config` foi utilizado para:
-
-- Definir a URL base do OrangeHRM, facilitando o uso de caminhos relativos nos comandos `cy.visit()`.
-- Configurar caminhos personalizados para as pastas de testes, fixtures e suporte, caso necessário.
-- Ajustar opções de execução, como tempo limite de comandos e viewport padrão.
-
-Essas configurações tornam o ambiente de testes mais flexível, padronizado e fácil de manter, permitindo que todos os testes utilizem as mesmas definições sem a necessidade de repetição de código.
-
-## 📝 Utilização do arquivo `user.spec.cy.js`
-
-O arquivo `user.spec.cy.js` contém os scripts de teste automatizado que validam os principais cenários do sistema OrangeHRM utilizando o Cypress. Nele, estão implementados os fluxos de teste descritos acima, como o login com sucesso, atualização de informações do usuário e tentativa de login com credenciais inválidas.
-
-Esse arquivo segue a estrutura recomendada pelo Cypress para arquivos de especificação (`spec`), agrupando os testes relacionados ao usuário em um único local. Os testes utilizam métodos definidos nas páginas (Object Page) e dados provenientes dos arquivos de fixtures, garantindo organização, reutilização e clareza no código.
-
-Dessa forma, o `user.spec.cy.js` é o ponto central para execução e manutenção dos testes automatizados deste projeto.
-
+---
 
 ## 🧩 Cenários Automatizados
 
-Este projeto contém dois cenários principais de testes automatizados utilizando o Cypress no sistema **OrangeHRM**:
-
-
-
 ### ✅ 1. Atualização de Informações do Usuário (Login com Sucesso)
 
-**Objetivo:**  
-Garantir que um usuário válido consiga fazer login e atualizar suas informações pessoais com sucesso.
+- **Objetivo:** Garantir que um usuário válido consiga fazer login e atualizar suas informações pessoais.
+- **Passos:**
+    1. Acessar `/auth/login`
+    2. Preencher usuário e senha válidos (do `userData.json`)
+    3. Validar redirecionamento para o Dashboard
+    4. Navegar até “My Info”
+    5. Atualizar campos pessoais (nome, IDs, datas, nacionalidade, estado civil)
+    6. Submeter alterações
+    7. Verificar mensagem de sucesso `"Successfully Updated"`
+- **Resultado esperado:** Informações salvas e notificação de confirmação exibida.
 
-**Passos automatizados:**
-
-1. Acessar a tela de login (`/auth/login`)
-2. Preencher **usuário e senha válidos** a partir do arquivo `userData.json`
-3. Validar o redirecionamento para o **Dashboard**
-4. Navegar até a aba **“My Info”**
-5. Preencher e atualizar:
-   - Nome (Primeiro, do meio e último)
-   - IDs (Employee ID, Other ID, Driver License)
-   - Campo adicional (`Test_FieldTest`)
-   - Datas (utilizando `placeholder='yyyy-dd-mm'`)
-6. Selecionar **Nacionalidade** e **Estado civil** via combobox
-7. Submeter as alterações
-8. Verificar a exibição da mensagem: `"Successfully Updated"`
-
-**Resultado esperado:**  
-Todas as informações são salvas com sucesso e uma notificação de confirmação é exibida.
-
-
+---
 
 ### ❌ 2. Login com Falha
 
-**Objetivo:**  
-Verificar o comportamento do sistema quando o usuário tenta logar com credenciais inválidas.
+- **Objetivo:** Verificar o comportamento ao tentar logar com credenciais inválidas.
+- **Passos:**
+    1. Acessar `/auth/login`
+    2. Preencher usuário e senha inválidos
+    3. Clicar em login
+    4. Verificar alerta de erro (`[role='alert']`)
+- **Resultado esperado:** Mensagem de erro informando credenciais incorretas.
 
-**Passos automatizados:**
-
-1. Acessar a tela de login (`/auth/login`)
-2. Preencher **usuário e senha inválidos**
-3. Clicar no botão de login
-4. Verificar a exibição do alerta de erro (`[role='alert']`)
-
-**Resultado esperado:**  
-Uma mensagem de erro é exibida informando que as credenciais estão incorretas.
+---
 
 ## 🛠️ Tecnologias Utilizadas
 
-- [Cypress](https://www.cypress.io/) (Framework de testes end-to-end)
+- [Cypress](https://www.cypress.io/) (Testes end-to-end)
 - [Node.js](https://nodejs.org/)
-- OrangeHRM (Sistema utilizado como ambiente de simulação)
+- OrangeHRM (Ambiente de simulação)
 
-## 📁 Como executar
+---
+
+## 📁 Como Executar
 
 1. **Clone o repositório**
-    ```bash
-    git clone https://github.com/Darleneleao/primeiros-passos-cypress.git
+        ```bash
+        git clone https://github.com/Darleneleao/primeiros-passos-cypress.git
+        cd primeiros-passos-cypress
+        ```
 
 2. **Instale as dependências**
-    ```bash
-    npm install
+        ```bash
+        npm install
+        ```
 
 3. **Execute os testes**
-    ```bash
-    npx cypress open
+        ```bash
+        npx cypress open
+        ```
+4. Na interface do Cypress, selecione os testes desejados.
 
-4. Na interface do Cypress, selecione os testes que deseja rodar.
+---
+
+## 📚 Referências
+
+- [Documentação Cypress](https://docs.cypress.io/)
+- [OrangeHRM Demo](https://opensource-demo.orangehrmlive.com/)
+
